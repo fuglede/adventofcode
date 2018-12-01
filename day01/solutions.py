@@ -1,14 +1,13 @@
 import numpy as np
-import pandas as pd
 
 
 # Part one
-df = pd.read_csv('input', header=None)
-print(df.sum()[0])
+changes = np.genfromtxt('input', dtype=int)
+print(changes.sum())
 
 
 # Part two
-def find_first_duplicate(changes):
+def first_frequency_reached_twice(changes):
     freqs = np.cumsum(changes)
     seen = set()
     while True:
@@ -19,4 +18,4 @@ def find_first_duplicate(changes):
         freqs += changes[0] + freqs[-1] - freqs[0]
 
 
-print(find_first_duplicate(df.values))
+print(first_frequency_reached_twice(changes))
