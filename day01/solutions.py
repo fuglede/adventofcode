@@ -9,7 +9,7 @@ print(changes.sum())
 # Part two
 def first_frequency_reached_twice(changes):
     freqs = np.cumsum(changes)
-    seen = set()
+    seen = {0}
     while True:
         for b in freqs:
             if b in seen:
