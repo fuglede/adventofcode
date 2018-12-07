@@ -10,13 +10,7 @@ g = nx.DiGraph()
 g.add_edges_from((l[5], l[36]) for l in lines)
 
 # Part one
-s = ''
-while len(s) != 26:
-    available = sorted([n for n in g.nodes() if n not in s and all(e[0] in s for e in g.in_edges(n))])
-    new = available[0]
-    s += new
-
-print(s)
+print(''.join(nx.lexicographical_topological_sort(g)))
 
 
 # Part two
