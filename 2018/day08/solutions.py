@@ -3,19 +3,17 @@ with open('input') as f:
 
 
 def parse(s):
-    children = s[0]
-    num_metas = s[1]
-    s = s[2:]
+    children, num_metas, s = s[0], s[1], s[2:]
     total = 0
-    meta = []
+    sub_metas = []
     for _ in range(children):
         sub_total, sub_meta, s = parse(s)
         total += sub_total
-        meta.append(sub_meta)
-    total += sum(s[:num_metas])
-    meta_sum = total if not children else sum(meta[i - 1] for i in s[:num_metas] if i <= len(meta))
-    rest = s[num_metas:]
-    return total, meta_sum, rest
+        sub_metas.append(sub_meta)
+    metas, s = s[:num_metas], s[num_metas:]
+    total += sum(metas)
+    meta_sum = total if not children else sum(sub_metas[i - 1] for i in metas if i <= len(sub_metas))
+    return total, meta_sum, s
 
 
 result = parse(data)
