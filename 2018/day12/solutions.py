@@ -17,5 +17,5 @@ for _ in range(20):
 print(sum(i+first for i, s in enumerate(state) if s == '#'))
 
 # Part two
-# First, realize that the sum above grows with 480 for each 1000 steps
+# First, realize that the sum above grows with 21000 for each 1000 steps and starts at 480
 print(50000000000//1000*21000+480)
