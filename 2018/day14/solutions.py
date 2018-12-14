@@ -16,7 +16,7 @@ i = '505961'
 while True:
     digits = scores[current[0]] + scores[current[1]]
     scores += [int(i) for i in str(digits)]
-    s = str(''.join(map(str, scores[-8:])))
+    s = ''.join(map(str, scores[-8:]))
     index = s.find(i)
     if index != -1:
         print(index + len(scores) - 8)
