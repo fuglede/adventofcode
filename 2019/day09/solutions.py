@@ -6,9 +6,7 @@ with open('input') as f:
 
 
 def run(inp):
-    p = defaultdict(int)
-    for m, n in enumerate(ns):
-        p[m] = n
+    p = defaultdict(int, enumerate(ns))
     i = 0
     base = 0
     while True:
