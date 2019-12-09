@@ -8,8 +8,6 @@ def run(inp):
     while True:
         cmd = str(p[i]).zfill(5)
         opcode = int(cmd[3:])
-        mode1 = int(cmd[2])
-        mode2 = int(cmd[1])
         p1 = p[i + 1] if int(cmd[2]) else p[p[i + 1]]
         try:
             p2 = p[i + 2] if int(cmd[1]) else p[p[i + 2]]

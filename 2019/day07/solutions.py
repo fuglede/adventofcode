@@ -12,8 +12,6 @@ def run():
     while True:
         cmd = str(p[i]).zfill(5)
         opcode = int(cmd[3:])
-        mode1 = int(cmd[2])
-        mode2 = int(cmd[1])
         try:
             p1 = p[i + 1] if int(cmd[2]) else p[p[i + 1]]
         except IndexError:
