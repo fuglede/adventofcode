@@ -15,7 +15,6 @@ class VM:
         self.i = 0
         self.base = 0
         self.it = self.run()
-        self.opcode_counter = defaultdict(int)
 
     def __getitem__(self, index):
         if index < 0:
@@ -33,18 +32,17 @@ class VM:
 
     def run(self):
         while True:
-            cmd = str(self[self.i]).zfill(5)
-            opcode = int(cmd[3:])
-            modes = {k: int(cmd[3 - k]) for k in (1, 2, 3)}
+            cmd = self[self.i]
+            opcode = cmd % 100
+            modes = [(cmd//100) % 10, (cmd//1000) % 10, (cmd//10000) % 10]
             addrs = {}
-            self.opcode_counter[cmd] += 1
             for k in (1, 2, 3):
                 try:
-                    if modes[k] == 0:
+                    if modes[k-1] == 0:
                         addrs[k] = self[self.i+k]
-                    elif modes[k] == 1:
+                    elif modes[k-1] == 1:
                         addrs[k] = self.i+k
-                    elif modes[k] == 2:
+                    elif modes[k-1] == 2:
                         addrs[k] = self[self.i+k]+self.base
                 except IndexError:
                     pass
