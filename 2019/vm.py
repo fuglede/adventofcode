@@ -90,3 +90,8 @@ class VM:
     def run_until_halt(self):
         for _ in self:
             pass
+
+
+def read_program(day):
+    with open(f'day{day:02d}/input') as f:
+        return list(map(int, f.read().split(',')))

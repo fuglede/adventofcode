@@ -1,10 +1,9 @@
 from collections import defaultdict
 import os
-from vm import VM
+from vm import VM, read_program
 
 
-with open(os.path.join(os.path.dirname(__file__), 'input')) as f:
-    ns = list(map(int, f.read().split(',')))
+ns = read_program(11)
 
 
 def get_colors(initial):
