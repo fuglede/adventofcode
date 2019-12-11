@@ -11,7 +11,7 @@ def run_with_inputs(n1, n2):
 
 
 # Part one
-print(run_with_inputs(2, 12))
+print(run_with_inputs(12, 2))
 
 
 # Part two
