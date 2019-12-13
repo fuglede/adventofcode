@@ -79,6 +79,9 @@ class VM:
     def add_input(self, value):
         self.inputs.append(value)
 
+    def set_input(self, value):
+        self.inputs = deque([value])
+
     def run_until_next_output(self):
         return next(self)
 
