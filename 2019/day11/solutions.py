@@ -1,5 +1,5 @@
-from collections import defaultdict
-import os
+from collections import defaultdict, deque
+
 from vm import VM, read_program
 
 
@@ -7,14 +7,15 @@ ns = read_program(11)
 
 
 def get_colors(initial):
-    vm = VM([], ns)
+    inputs = deque()
+    vm = VM(ns, inputs)
     d = -1j
     loc = 0
     colors = defaultdict(int)
     colors[0] = initial
     try:
         while True:
-            vm.add_input(colors[loc])
+            inputs.append(colors[loc])
             colors[loc] = next(vm)
             d *= 1j if next(vm) else -1j
             loc += d

@@ -3,15 +3,15 @@ this year's Advent of Code. Most of the puzzles can be solved through simpler
 means, but in this module we try to capture all necessary functionality as we
 move along, while trying to make guesses at where to make it extensible.
 """
-from collections import defaultdict, deque
+from collections import defaultdict
 from itertools import cycle, permutations
 from math import inf
 
 
 class VM:
-    def __init__(self, inputs, program):
-        self.inputs = deque(inputs)
+    def __init__(self, program, inputs=None):
         self.p = defaultdict(int, enumerate(program))
+        self.inputs = inputs
         self.i = 0
         self.base = 0
         self.it = self.run()
@@ -75,12 +75,6 @@ class VM:
                 return
             else:
                 raise RuntimeError(f'Invalid opcode: {opcode}')
-
-    def add_input(self, value):
-        self.inputs.append(value)
-
-    def set_input(self, value):
-        self.inputs = deque([value])
 
     def run_until_next_output(self):
         return next(self)
