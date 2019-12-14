@@ -6,7 +6,7 @@ from vm import VM, read_program
 ns = read_program(13)
 
 # Part one
-vm = VM([], ns)
+vm = VM(ns)
 t = 0
 try:
     while True:
@@ -18,10 +18,18 @@ except StopIteration:
 
 
 # Part two
-vm = VM([], ns)
-vm[0] = 2
 paddle_x = 0
 ball_x = 0
+
+
+class AI:
+    @staticmethod
+    def popleft():
+        return np.sign(ball_x - paddle_x)
+
+
+vm = VM(ns, AI)
+vm[0] = 2
 try:
     while True:
         x, y, tile_id = next(vm), next(vm), next(vm)
@@ -31,6 +39,5 @@ try:
             paddle_x = x
         elif tile_id == 4:
             ball_x = x
-        vm.set_input(np.sign(ball_x - paddle_x))
 except StopIteration:
     print(score)

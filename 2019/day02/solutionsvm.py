@@ -4,7 +4,7 @@ ns = read_program(2)
 
 
 def run_with_inputs(n1, n2):
-    vm = VM([], ns)
+    vm = VM(ns)
     vm[1], vm[2] = n1, n2
     vm.run_until_halt()
     return vm[0]
