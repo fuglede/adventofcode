@@ -16,6 +16,13 @@ class VM:
         self.base = 0
         self.it = self.run()
 
+    def clone(self):
+        vm = VM([])
+        vm.p = defaultdict(int, self.p.items())
+        vm.i = self.i
+        vm.base = self.base
+        return vm
+
     def __getitem__(self, index):
         if index < 0:
             raise RuntimeError('Negative memory access attempted.')
@@ -56,8 +63,8 @@ class VM:
                 self[addrs[1]] = self.inputs.popleft()
                 self.i += 2
             elif opcode == 4:
-                yield self[addrs[1]]
                 self.i += 2
+                yield self[addrs[1]]
             elif opcode == 5:
                 self.i = self[addrs[2]] if self[addrs[1]] != 0 else self.i + 3
             elif opcode == 6:
