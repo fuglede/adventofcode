@@ -5,6 +5,7 @@ with open('input') as f:
     ls = [l.strip() for l in f.readlines()]
 
 
+# Part one
 def step(d):
     new_d = defaultdict(int)
     for y in range(5):
@@ -57,6 +58,7 @@ def solve():
 print(solve())
 
 
+# Part two
 def all_adjacent(z, level):
     adjacent = [(z-1, level), (z+1, level), (z-1j, level), (z+1j, level)]
     adjacent = [(w, level) for (w, level) in adjacent if 0 <= w.real <= 4 and 0 <= w.imag <= 4 and w != 2+2j]

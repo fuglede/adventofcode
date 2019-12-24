@@ -4,8 +4,6 @@ means, but in this module we try to capture all necessary functionality as we
 move along, while trying to make guesses at where to make it extensible.
 """
 from collections import defaultdict
-from itertools import cycle, permutations
-from math import inf
 
 
 class VM:
