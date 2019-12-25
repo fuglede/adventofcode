@@ -22,11 +22,14 @@ class AI:
 
 vm = VM(ns, AI)
 vm[0] = 2
-for x, y, tile_id in zip(vm, vm, vm):
-    if x == -1 and y == 0:
-        score = tile_id
-    elif tile_id == 3:
-        paddle_x = x
-    elif tile_id == 4:
-        ball_x = x
-print(score)
+try:
+    while True:
+        x, y, tile_id = next(vm), next(vm), next(vm)
+        if x == -1 and y == 0:
+            score = tile_id
+        elif tile_id == 3:
+            paddle_x = x
+        elif tile_id == 4:
+            ball_x = x
+except StopIteration:
+    print(score)

@@ -33,7 +33,10 @@ class VM:
         return self.it
 
     def __next__(self):
-        return next(self.it)
+        while True:
+            res = next(self.it)
+            if res is not None:
+                return res
 
     def run(self):
         while True:
@@ -58,6 +61,7 @@ class VM:
                 self[addrs[3]] = self[addrs[1]] * self[addrs[2]]
                 self.i += 4
             elif opcode == 3:
+                yield
                 self[addrs[1]] = self.inputs.popleft()
                 self.i += 2
             elif opcode == 4:
@@ -85,7 +89,7 @@ class VM:
         return next(self)
 
     def run_until_next_nonzero_output(self):
-        return next(o for o in self if o != 0)
+        return next(o for o in self if o is not None and o != 0)
 
     def run_until_halt(self):
         for _ in self:
