@@ -10,12 +10,13 @@ def cmp(a, b):
 
 
 for part1 in (True, False):
-    d = defaultdict(int)
+    seen = set()
+    overlap = set()
     for x1, y1, x2, y2 in ns:
-        dx = cmp(x2, x1)
-        dy = cmp(y2, y1)
-        if part1 and dx and dy:
+        ds = cmp(x2, x1) + cmp(y2, y1) * 1j
+        if abs(ds) != 1 and part1:
             continue
-        for i in range((abs(x1 - x2) or abs(y1 - y2)) + 1):
-            d[(x1 + i * dx, y1 + i * dy)] += 1
-    print(sum(x > 1 for x in d.values()))
+        new = {x1 + y1 * 1j + i * ds for i in range((abs(x2 - x1) or abs(y2 - y1)) + 1)}
+        overlap |= seen & new
+        seen |= new
+    print(len(overlap))
