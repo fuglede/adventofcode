@@ -1,0 +1,11 @@
+name: Post notification to Slack
+
+on: push
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Post notification
+      run: |
+        curl --data '{"text": "Så har pred sgu committed"}' -H "Content-type: application/json" ${{ secrets.SLACK_WEBHOOK_URL }}
