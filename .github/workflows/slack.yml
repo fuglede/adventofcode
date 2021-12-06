@@ -8,4 +8,4 @@ jobs:
     steps:
     - name: Post notification
       run: |
-        curl --data '{"text": "Så har pred sgu committed: ${{ github.event.head_commit.message }}"}' -H "Content-type: application/json" ${{ secrets.SLACK_WEBHOOK_URL }}
+        curl --data '{"text": "Så har pred sgu committed: ${{ github.event.head_commit.message }} -- https://github.com/fuglede/adventofcode/commit/${{ github.event.head_commit.id }}"}' -H "Content-type: application/json" ${{ secrets.SLACK_WEBHOOK_URL }}
