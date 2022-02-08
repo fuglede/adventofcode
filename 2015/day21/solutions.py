@@ -17,10 +17,10 @@ class Player:
 def game_won(player, enemy):
     while True:
         enemy.hp -= max(player.damage - enemy.armor, 1)
-        if enemy.hp < 0:
+        if enemy.hp <= 0:
             return True
         player.hp -= max(enemy.damage - player.armor, 1)
-        if player.hp < 0:
+        if player.hp <= 0:
             return False
 
 
