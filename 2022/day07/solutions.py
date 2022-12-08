@@ -6,21 +6,17 @@ with open("input") as f:
 sizes = defaultdict(int)
 stack = []
 for l in ls:
-    if l.startswith("$ cd "):
-        x = l[5:]
-        if x == "/":
+    match l.split():
+        case [_, _, "/"]:
             stack = []
-        elif x == "..":
+        case [_, _, ".."]:
             stack.pop()
-        else:
+        case [_, _, x]:
             stack.append(x)
-    elif l[0] != "$":
-        a, _ = l.split()
-        if a != "dir":
+        case [a, _] if a.isdigit():
             for i in range(len(stack) + 1):
                 path = "/" + "/".join(stack[:i])
                 sizes[path] += int(a)
-
 
 # Part 1
 print(sum(filter(lambda v: v <= 100000, sizes.values())))
