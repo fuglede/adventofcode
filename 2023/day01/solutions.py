@@ -6,8 +6,8 @@ with open("input") as f:
 
 def calibration(data):
     ls = data.split("\n")
-    ns = [list(map(int, re.findall("\d", x))) for x in ls]
-    return sum(10 * n[0] + n[-1] for n in ns)
+    ns = [re.findall("\d", x) for x in ls]
+    return sum(int(n[0] + n[-1]) for n in ns)
 
 
 # Part 1

@@ -18,8 +18,8 @@ def has_three_straight(s):
     return False
 
 
-def has_no_iou(s):
-    return 'i' not in s and 'o' not in s and 'u' not in s
+def has_no_iol(s):
+    return 'i' not in s and 'o' not in s and 'l' not in s
 
 
 def has_double_pair(s):
@@ -42,7 +42,7 @@ def has_double_pair(s):
 def solve(s):
     while True:
         increase(s, len(s)-1)
-        if has_three_straight(s) and has_no_iou(s) and has_double_pair(s):
+        if has_three_straight(s) and has_no_iol(s) and has_double_pair(s):
             return ''.join(s)
 
 
