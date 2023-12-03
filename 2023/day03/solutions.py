@@ -7,8 +7,12 @@ with open("input") as f:
     ls = f.read().strip().split("\n")
 
 box = list(itertools.product((-1, 0, 1), (-1, 0, 1)))
-board = {(i, j): ls[i][j] for i in range(len(ls)) for j in range(len(ls[0]))}
-symbols = {x for x in board if board[x] != "." and not board[x].isdigit()}
+symbols = {
+    (i, j)
+    for i, l in enumerate(ls)
+    for j, x in enumerate(l)
+    if x != "." and not x.isdigit()
+}
 
 part_sum = 0
 parts_by_symbol = defaultdict(list)
