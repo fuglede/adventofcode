@@ -13,10 +13,9 @@ for l in ls:
     colormax = defaultdict(int)
     for count, color in zip(parts[2::2], parts[3::2]):
         colormax[color] = max(colormax[color], int(count))
-    power = math.prod(colormax.values())
     if colormax["red"] <= 12 and colormax["green"] <= 13 and colormax["blue"] <= 14:
         good_ids += int(parts[1])
-    total_power += power
+    total_power += math.prod(colormax.values())
 
 # Part 1
 print(good_ids)
